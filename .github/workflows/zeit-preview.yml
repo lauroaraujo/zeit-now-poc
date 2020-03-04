@@ -21,7 +21,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: now -t ${{ secrets.ZEIT_NOW_TOKEN }} --scope lauroaraujo
-    - run: now -A now.preview.json
+    - run: now --confirm -t ${{ secrets.ZEIT_NOW_TOKEN }} -S lauroaraujo -A now.preview.json
       env:
         CI: true
