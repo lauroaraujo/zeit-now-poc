@@ -15,12 +15,8 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
     - uses: actions/checkout@v2
-    - run: now --confirm -t ${{ secrets.ZEIT_NOW_TOKEN }} -S lauroaraujo -A now.preview.json
+    - run: now --confirm -t ${{ secrets.ZEIT_NOW_TOKEN }} -m branch=${{ github.ref }} -S lauroaraujo -A now.preview.json
       env:
         CI: true
