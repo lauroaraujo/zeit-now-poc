@@ -32,6 +32,7 @@ function IndexPage () {
         <p>Serverless NextJS POC</p>
         <p>Integration with the master branch is bugged.</p>
         <p>Actually, seems to be by design, unfortunately</p>
+        <p>Github Actions WORKS!</p>
         <div>
           <code>FE BUILD: {process.env.BUILD_VERSION}</code>
         </div>
