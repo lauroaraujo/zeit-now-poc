@@ -1,0 +1,10 @@
+{
+  "build": {
+    "env": {
+      "BUILD_VERSION": "@preview__build_version"
+    }
+  },
+  "env": {
+    "API_VERSION": "@preview__api_version"
+  }
+}
