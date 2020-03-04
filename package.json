@@ -3,6 +3,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "deploy": "now -A now.preview.json",
+    "deploy:production": "now -A now.prod.json --prod",
     "now": "now"
   },
   "dependencies": {
