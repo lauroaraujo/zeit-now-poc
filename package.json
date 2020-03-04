@@ -4,6 +4,7 @@
     "build": "next build",
     "start": "next start",
     "deploy": "now -A now.preview.json",
+    "deploy:staging": "now -A now.staging.json",
     "deploy:production": "now -A now.prod.json --prod",
     "now": "now"
   },
