@@ -3,15 +3,19 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "deploy": "now -A now.preview.json",
+    "deploy:production": "now -A now.prod.json --prod",
     "now": "now"
   },
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.2.2",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "swr": "^0.1.18"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "now": "^17.0.4"
   }
 }
