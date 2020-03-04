@@ -16,6 +16,7 @@ export default function Index () {
       <h1>Next JS and Zeit Now!</h1>
       <article>
         <p>Serverless NextJS POC</p>
+        <p>Integration with the master branch is bugged.</p>
       </article>
 
       <ul>
