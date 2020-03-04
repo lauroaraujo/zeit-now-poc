@@ -23,7 +23,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn install
-    - run: yarn deploy:production
+    - run: now -t ${{ secrets.ZEIT_NOW_TOKEN }} --scope lauroaraujo
+    - run: now -A now.prod.json --prod
       env:
         CI: true
