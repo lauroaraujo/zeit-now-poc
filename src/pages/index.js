@@ -16,8 +16,7 @@ export default function Index () {
       <h1>Next JS and Zeit Now!</h1>
       <article>
         <p>Serverless NextJS POC</p>
-        <p>Now with src folder</p>
-        <p>And Zeit Now Previews!</p>
+        <p>Git integration change</p>
       </article>
 
       <ul>
