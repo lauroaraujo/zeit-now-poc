@@ -1,14 +1,14 @@
-name: Node.js CI
+name: Deploy Zeit Now Preview
 
 on:
   push:
-    branches:
-    - '!master'
-    - '!staging'
+    branches-ignore:
+    - master
+    - staging
   pull_request:
-    branches:
-    - '!master'
-    - '!staging'
+    branches-ignore:
+    - master
+    - staging
 
 jobs:
   build:
@@ -21,10 +21,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Deploy Preview to Zeit Now!
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
     - run: now -t ${{ secrets.ZEIT_NOW_TOKEN }} --scope lauroaraujo
     - run: now -A now.preview.json
       env:
