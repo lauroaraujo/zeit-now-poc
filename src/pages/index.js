@@ -17,6 +17,7 @@ export default function Index () {
       <article>
         <p>Serverless NextJS POC</p>
         <p>Integration with the master branch is bugged.</p>
+        <p>Actually, seems to be by design, unfortunately</p>
       </article>
 
       <ul>
