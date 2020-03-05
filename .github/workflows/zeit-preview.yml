@@ -37,5 +37,6 @@ jobs:
         now alias
         --local-config=./now.preview.json
         --token ${ZEIT_TOKEN}
+        `cat ${HOME}/deployment-url.txt`
         ${{ github.event.repository.name }}
 
