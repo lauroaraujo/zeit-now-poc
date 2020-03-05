@@ -1,0 +1,45 @@
+name: Deploy Zeit Now Preview
+
+on:
+  push:
+    branches-ignore:
+    - master
+    - staging
+  pull_request:
+    branches-ignore:
+    - master
+    - staging
+
+jobs:
+  build:
+    name: Deploy Preview
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+    - name: Deploy preview
+      env:
+        BUILD_ID: ${{ github.sha }}
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now deploy
+        --local-config=./now.preview.json
+        --build-env NODE_ENV=production
+        --build-env BUILD_ID=${BUILD_ID}
+        --env NODE_ENV=production
+        --token ${ZEIT_TOKEN}
+        --confirm
+        > ${HOME}/deployment-url.txt
+    - name: Alias with branch name
+      env:
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now alias
+        --local-config=./now.preview.json
+        --token ${ZEIT_TOKEN}
+        `cat ${HOME}/deployment-url.txt`
+        zeit-now-poc-dun-${{ steps.vars.outputs.short_ref }}.now.sh
+
