@@ -17,6 +17,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
     - name: Deploy preview
       env:
         BUILD_ID: ${{ github.sha }}
@@ -38,5 +41,5 @@ jobs:
         --local-config=./now.preview.json
         --token ${ZEIT_TOKEN}
         `cat ${HOME}/deployment-url.txt`
-        ${{ github.event.repository.name }}
+        ${{ steps.vars.outputs.short_ref }}
 
