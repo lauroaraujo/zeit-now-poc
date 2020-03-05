@@ -18,5 +18,25 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: now --confirm -t ${{ secrets.ZEIT_NOW_TOKEN }} -m branch=${{ github.ref }} -S lauroaraujo -A now.preview.json
+    - name: Deploy preview
       env:
-        CI: true
+        BUILD_ID: ${{ github.sha }}
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now deploy
+        --local-config=./now.preview.json
+        --build-env NODE_ENV=production
+        --build-env BUILD_ID=${BUILD_ID}
+        --env NODE_ENV=production
+        --token ${ZEIT_NOW_TOKEN}
+        --confirm
+        > ${HOME}/deployment-url.txt
+    - name: Alias with branch name
+      env:
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now alias
+        --local-config=./now.preview.json
+        --token ${ZEIT_TOKEN}
+        ${{ github.event.repository.name }}
+
