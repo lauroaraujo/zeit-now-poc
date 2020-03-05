@@ -35,3 +35,10 @@ jobs:
         --token ${ZEIT_TOKEN}
         `cat ${HOME}/deployment-url.txt`
         zeit-now-poc-dun-${{ steps.vars.outputs.short_ref }}.now.sh
+    - name: Comment on PR
+      uses: mshick/add-pr-comment@v1
+      with:
+        message: |
+          **Deployed to**: zeit-now-poc-dun-${{ steps.vars.outputs.short_ref }}.now.sh
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        allow-repeats: false
