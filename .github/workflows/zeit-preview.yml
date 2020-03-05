@@ -41,5 +41,5 @@ jobs:
         --local-config=./now.preview.json
         --token ${ZEIT_TOKEN}
         `cat ${HOME}/deployment-url.txt`
-        ${{ steps.vars.outputs.short_ref }}
+        zeit-now-poc-dun-${{ steps.vars.outputs.short_ref }}.now.sh
 
