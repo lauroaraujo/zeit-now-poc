@@ -1,11 +1,15 @@
 {
+  "version": 2,
+  "scope": "lauroaraujo",
   "alias": "zeit-now-poc-dun-staging.now.sh",
   "build": {
     "env": {
+      "NODE_ENV": "production",
       "BUILD_VERSION": "@staging__build_version"
     }
   },
   "env": {
+    "NODE_ENV": "production",
     "API_VERSION": "@staging__api_version"
   }
 }

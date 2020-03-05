@@ -1,10 +1,14 @@
 {
+  "version": 2,
+  "scope": "lauroaraujo",
   "build": {
     "env": {
+      "NODE_ENV": "production",
       "BUILD_VERSION": "@prod__build_version"
     }
   },
   "env": {
+    "NODE_ENV": "production",
     "API_VERSION": "@prod__api_version"
   }
 }
