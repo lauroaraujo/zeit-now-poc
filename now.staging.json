@@ -1,0 +1,11 @@
+{
+  "alias": "zeit-now-poc-dun-staging.now.sh",
+  "build": {
+    "env": {
+      "BUILD_VERSION": "@staging__build_version"
+    }
+  },
+  "env": {
+    "API_VERSION": "@staging__api_version"
+  }
+}
