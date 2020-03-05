@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-
+    name: Deploy Preview
     runs-on: ubuntu-latest
 
     steps:
