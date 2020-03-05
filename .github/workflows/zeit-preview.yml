@@ -17,7 +17,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: now --confirm -t ${{ secrets.ZEIT_NOW_TOKEN }} -m branch=${{ github.ref }} -S lauroaraujo -A now.preview.json
     - name: Deploy preview
       env:
         BUILD_ID: ${{ github.sha }}
@@ -28,7 +27,7 @@ jobs:
         --build-env NODE_ENV=production
         --build-env BUILD_ID=${BUILD_ID}
         --env NODE_ENV=production
-        --token ${ZEIT_NOW_TOKEN}
+        --token ${ZEIT_TOKEN}
         --confirm
         > ${HOME}/deployment-url.txt
     - name: Alias with branch name
