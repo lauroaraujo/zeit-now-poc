@@ -1,0 +1,24 @@
+name: Production
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy to Zeit Now
+      env:
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now deploy
+        --local-config=./now.prod.json
+        --token ${ZEIT_TOKEN}
+        --prod
+        --confirm
+        > ${HOME}/deployment-url.txt

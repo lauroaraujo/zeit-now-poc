@@ -1,0 +1,32 @@
+name: Staging
+
+on:
+  push:
+    branches:
+    - staging
+
+jobs:
+  build:
+    name: Deploy Staging
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy to Zeit Now
+      env:
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now deploy
+        --local-config=./now.staging.json
+        --token ${ZEIT_TOKEN}
+        --confirm
+        > ${HOME}/deployment-url.txt
+    - name: Create Alias (staging)
+      env:
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now alias
+        --local-config=./now.staging.json
+        --token ${ZEIT_TOKEN}
+        `cat ${HOME}/deployment-url.txt`
+        zeit-now-poc-dun-staging.now.sh
