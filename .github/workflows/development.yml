@@ -5,10 +5,6 @@ on:
     branches-ignore:
     - master
     - staging
-  pull_request:
-    branches-ignore:
-    - master
-    - staging
 
 jobs:
   build:
