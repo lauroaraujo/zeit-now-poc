@@ -1,29 +1,35 @@
-name: Node.js CI
+name: Staging
 
 on:
   push:
     branches:
-    - 'staging'
+    - staging
   pull_request:
     branches:
-    - 'staging'
+    - staging
 
 jobs:
   build:
-
+    name: Deploy Staging
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Deploy Preview to Zeit Now!
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: now -t ${{ secrets.ZEIT_NOW_TOKEN }} --scope lauroaraujo
-    - run: now -A now.staging.json
+    - name: Deploy to Zeit Now
       env:
-        CI: true
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now deploy
+        --local-config=./now.staging.json
+        --token ${ZEIT_TOKEN}
+        --confirm
+        > ${HOME}/deployment-url.txt
+    - name: Create Alias (staging)
+      env:
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now alias
+        --local-config=./now.staging.json
+        --token ${ZEIT_TOKEN}
+        `cat ${HOME}/deployment-url.txt`
+        zeit-now-poc-dun-staging.now.sh

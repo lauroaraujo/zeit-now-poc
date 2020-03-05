@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Production
 
 on:
   push:
@@ -10,20 +10,18 @@ on:
 
 jobs:
   build:
-
+    name: Deploy Production
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Deploy Preview to Zeit Now!
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: now -t ${{ secrets.ZEIT_NOW_TOKEN }} --scope lauroaraujo
-    - run: now -A now.prod.json --prod
+    - name: Deploy to Zeit Now
       env:
-        CI: true
+        ZEIT_TOKEN: ${{ secrets.ZEIT_NOW_TOKEN }}
+      run: >
+        now deploy
+        --local-config=./now.prod.json
+        --token ${ZEIT_TOKEN}
+        --prod
+        --confirm
+        > ${HOME}/deployment-url.txt
