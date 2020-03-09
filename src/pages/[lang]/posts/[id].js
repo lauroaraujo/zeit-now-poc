@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import PageLayout from '../../components/PageLayout'
+import PageLayout from '../../../components/PageLayout'
 
 export default function Post () {
   const router = useRouter()

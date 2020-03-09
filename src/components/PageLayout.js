@@ -7,9 +7,10 @@ const layoutStyle = {
 }
 
 export default function PageLayout (props) {
+  const { lang } = props
   return (
     <div style={layoutStyle}>
-      <Header />
+      <Header lang={lang}/>
       { props.children }
     </div>
   )

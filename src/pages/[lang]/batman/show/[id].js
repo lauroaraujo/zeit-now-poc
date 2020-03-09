@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
 
-import PageLayout from '../../../components/PageLayout'
+import PageLayout from '../../../../components/PageLayout'
 
 const Post = ({ show }) => (
   <PageLayout>
