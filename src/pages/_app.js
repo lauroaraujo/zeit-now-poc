@@ -10,7 +10,7 @@ function NextApp({ Component, pageProps, lang }) {
 }
 
 NextApp.getInitialProps = async function({ Component, ctx }) {
-  const { lang } = ctx.query || 'en'
+  const lang = getLang(ctx)
 
   let pageProps = {}
   if (Component.getInitialProps) {
@@ -52,6 +52,14 @@ function i18nInit(lang) {
       escapeValue: false
     }
   })
+}
+
+function getLang(ctx) {
+  const { lang } = ctx.query || {}
+
+  return ['en', 'fr'].includes(lang)
+    ? lang
+    : 'en'
 }
 
 export default NextApp

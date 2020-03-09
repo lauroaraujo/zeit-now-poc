@@ -31,7 +31,7 @@ async function redirects() {
   //     : []
   // }
 
-  const pageRedirects = fs.readdirSync('./src/pages', { withFileTypes: true })
+  const pageRedirects = fs.readdirSync('./src/pages/[lang]', { withFileTypes: true })
     .filter(entry => !entry.name.match(/(api|_app\.(js|jsx|ts)|index\.(js|jsx|ts))/))
     .flatMap(entry => {
       if (entry.isFile && entry.name.endsWith('.js')) {

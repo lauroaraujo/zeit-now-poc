@@ -11,8 +11,6 @@ function fetcher(url) {
 }
 
 const PostLink = ({ id }) => {
-  const lang = getI18n().language
-
   return (
     <li>
       <Link href={`/posts/[id]`} as={`/posts/${id}`}>
@@ -25,8 +23,7 @@ const PostLink = ({ id }) => {
 function IndexPage () {
   const lang = getI18n().language
   const router = useRouter()
-  // const { lang } = router.query
-  // const { data, error } = useSWR('/api/randomQuote', fetcher)
+
   const { data, error } = useSWR('/api/version', fetcher)
   // The following line has optional chaining, added in Next.js v9.1.5,
   // is the same as `data && data.author`
@@ -43,14 +40,15 @@ function IndexPage () {
       <header>lang: {lang}</header>
       <article>
         <p>Serverless NextJS POC</p>
-        <p>Integration with the master branch is bugged.</p>
-        <p>Actually, seems to be by design, unfortunately</p>
-        <p>GitHub Actions WORKS!</p>
+        <p>Translations right now opt out of static optimization...</p>
         <div>
-          <code>FE BUILD: {process.env.BUILD_VERSION}</code>
-        </div>
-        <div>
-          <code>API VERSION: {version}</code>
+          <h4>Env Variables (Secrets) Test - Build and Runtime</h4>
+          <div>
+            <code>FE BUILD: {process.env.BUILD_VERSION}</code>
+          </div>
+          <div>
+            <code>API VERSION: {version}</code>
+          </div>
         </div>
       </article>
 
@@ -62,10 +60,5 @@ function IndexPage () {
     </PageLayout>
   )
 }
-
-// IndexPage.getInitialProps = async function(ctx) {
-//   const { lang } = ctx.query || 'en'
-//   return { lang }
-// }
 
 export default IndexPage

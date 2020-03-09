@@ -13,10 +13,7 @@ const Link = ({
 }) => {
   const i18nHRef = getI18nHRefProp(href)
   const i18nAs = getI18nAsProp(as, href)
-  // console.log(111, i18nAs)
-  // console.log(112, i18nHRef)
 
-  console.log(2, i18nHRef)
   return (
     <NextLink
       as={i18nAs}
